@@ -16,7 +16,8 @@ List<UniversityType> UniversityTypes = new()
     new UniversityType{Id="CU", Name="Central University"},
     new UniversityType{Id="STATE", Name="State University"},
     new UniversityType{Id="DEEMED", Name="Deemed University"},
-    new UniversityType{Id="PRIVATE", Name="Private University"}
+    new UniversityType{Id="PRIVATE", Name="Private University"},
+    new UniversityType{Id="OTHER", Name="Other University"}
 };
 
 var homePageDoc = await Helper.GetReponseAsync(CuetSamarthUniversityUrl);
@@ -59,7 +60,7 @@ foreach (var university in Universities)
     {
         var ucard = universityDoc.DocumentNode.QuerySelector(".card");
         university.WebsiteUrl = ucard.QuerySelector("a").GetAttributeValue("href", "");
-        university.Programs = Helper.GetProgramsFromTable(ucard.QuerySelector(".table-eligibility").InnerHtml);
+        university.Programs = Helper.GetProgramsFromTable(ucard.QuerySelector(".table-bordered").InnerHtml);
     }
 
     Console.WriteLine($"{++count} of {Universities.Count} - fetched {university.Programs.Count} programs from '{university.Name}' data...");
