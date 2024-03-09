@@ -5,9 +5,8 @@ using Fizzler.Systems.HtmlAgilityPack;
 var stopwatch = new System.Diagnostics.Stopwatch();
 stopwatch.Start();
 
-const string CuetSamarthUrlRoot = "https://cuet.samarth.ac.in";
-const string CuetSamarthUniversityUrl = $"{CuetSamarthUrlRoot}/index.php/app/info/universities";
-const string CuetCsvFileName = "cuetdata.csv";
+const string CuetSamarthUrlRoot = "https://cuetug.ntaonline.in"; //2024
+const string CuetSamarthUniversityUrl = $"{CuetSamarthUrlRoot}/universities";
 
 List<University> Universities = new();
 
@@ -17,7 +16,7 @@ List<UniversityType> UniversityTypes = new()
     new UniversityType{Id="STATE", Name="State University"},
     new UniversityType{Id="DEEMED", Name="Deemed University"},
     new UniversityType{Id="PRIVATE", Name="Private University"},
-    new UniversityType{Id="OTHER", Name="Other University"}
+    new UniversityType{Id="GOVT", Name="Goverment University"}
 };
 
 var homePageDoc = await Helper.GetReponseAsync(CuetSamarthUniversityUrl);
@@ -31,22 +30,23 @@ if (homePageDoc == null)
 Console.WriteLine($"Read home page: {CuetSamarthUniversityUrl}");
 
 //fetch initial universities related details from home page
-foreach (var utype in UniversityTypes) //iterate via unversity types
+var uTypeDivs = homePageDoc.GetElementbyId("searchItems").QuerySelectorAll("div.card.card-white.ovflw.mt-4");
+
+int t = 0;
+foreach (var uType in uTypeDivs)
 {
-    var ut = homePageDoc.GetElementbyId(utype.Id);
-
-    var univDivs = ut.QuerySelectorAll(".min-h-100");
-
-    foreach (var univDiv in univDivs)
+    var univs = uType.QuerySelectorAll("div.col-md-4");
+    foreach (var univ in univs)
     {
         //save details
         Universities.Add(new University
         {
-            EligibilityUrl = $"{CuetSamarthUrlRoot}{univDiv.QuerySelector("a").GetAttributeValue("href", "")}",
-            Type = utype,
-            Name = univDiv.QuerySelector(".card").GetAttributeValue("title", ""),
+            EligibilityUrl = $"{univ.QuerySelector("a").GetAttributeValue("href", "")}",
+            Type = UniversityTypes[t],
+            Name = univ.QuerySelector("h3").GetDirectInnerText(),
         });
     }
+    t++;
 }
 
 Console.WriteLine("Fetching individual university programs...");
@@ -58,14 +58,15 @@ foreach (var university in Universities)
     var universityDoc = await Helper.GetReponseAsync(university.EligibilityUrl);
     if (universityDoc != null)
     {
-        var ucard = universityDoc.DocumentNode.QuerySelector(".card");
-        university.WebsiteUrl = ucard.QuerySelector("a").GetAttributeValue("href", "");
-        university.Programs = Helper.GetProgramsFromTable(ucard.QuerySelector(".table-bordered").InnerHtml);
+        var ucard = universityDoc.DocumentNode.QuerySelector(".card-body");
+        //university.WebsiteUrl = ucard.QuerySelector("a").GetAttributeValue("href", "");
+        university.Programs = Helper.GetProgramsFromTable(ucard.QuerySelector(".table").InnerHtml);
     }
 
     Console.WriteLine($"{++count} of {Universities.Count} - fetched {university.Programs.Count} programs from '{university.Name}' data...");
 }
 
+var CuetCsvFileName = $"cuetdata-{DateTime.Now:yyyyMMMdd}.csv";
 Helper.SaveToFile(Helper.PrepareUniversityData(Universities), CuetCsvFileName);
 
 Console.WriteLine($"Finished saving data in {Path.GetFullPath(CuetCsvFileName)}");
