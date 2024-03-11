@@ -53,7 +53,7 @@ public static class Helper
     /// <returns></returns>
     public static List<UniversityProgram> GetProgramsFromTable(string tableHtml)
     {
-        var p =  new List<UniversityProgram>();
+        var p = new List<UniversityProgram>();
 
         var doc = new HtmlDocument();
         doc.LoadHtml(tableHtml);
@@ -73,7 +73,7 @@ public static class Helper
                 });
             }
         }
-        
+
         return p;
     }
 

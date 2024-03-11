@@ -16,7 +16,7 @@ List<UniversityType> UniversityTypes = new()
     new UniversityType{Id="STATE", Name="State University"},
     new UniversityType{Id="DEEMED", Name="Deemed University"},
     new UniversityType{Id="PRIVATE", Name="Private University"},
-    new UniversityType{Id="GOVT", Name="Goverment University"}
+    new UniversityType{Id="GOVT", Name="Government University"}
 };
 
 var homePageDoc = await Helper.GetReponseAsync(CuetSamarthUniversityUrl);
@@ -75,5 +75,5 @@ stopwatch.Stop();
 Console.WriteLine("Time taken : {0}. Press O|o to open file, any other key to close.", stopwatch.Elapsed);
 
 var key = Console.ReadKey();
-if (key.KeyChar == 'o' || key.KeyChar == 'O')
+if (key.KeyChar is 'o' or 'O')
     Helper.OpenFile(Path.GetFullPath(CuetCsvFileName));
