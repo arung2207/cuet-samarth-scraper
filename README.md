@@ -12,3 +12,5 @@ The list of programmes is evolving and changes almost daily. To see the delta di
 ![image](https://github.com/arung2207/cuet-samarth-scraper/assets/3456937/0dd92d84-36b9-4303-bedb-9e054f9e6bd6)
 
 Tools used: .Net 6.0 Console Application, HTTPClient, HtmlAgilityPack, Fizzler, CSVHelper.
+To edit or execute: Download the source code and open using [Microsoft Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/)
+To view the latest export: Download the CSV file from the link given above.
