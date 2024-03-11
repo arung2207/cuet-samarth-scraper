@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuetSamarthScraper", "CuetSamarthScraper\CuetSamarthScraper.csproj", "{40F3160A-35D1-4A55-ADA2-876D5F8C9921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CuetSamarthScraper", "CuetSamarthScraper\CuetSamarthScraper.csproj", "{40F3160A-35D1-4A55-ADA2-876D5F8C9921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
