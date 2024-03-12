@@ -1,5 +1,5 @@
 # CUET (UG) - 2024 - Data Scraper
-Fetches list of university programmes (along with the eligibility criterias) from all the universities listed on the [CUET (UG) - 2024 Website](https://cuetug.ntaonline.in/universities/), into a CSV file. Data updated as of 12th Mar 12.30p IST can be found ([here](https://github.com/arung2207/cuet-samarth-scraper/blob/main/cuetdata - 2024.csv)).
+Fetches list of university programmes (along with the eligibility criterias) from all the universities listed on the [CUET (UG) - 2024 Website](https://cuetug.ntaonline.in/universities/), into a CSV file. Data updated as of 12th Mar 12.30p IST can be found [here](https://github.com/arung2207/cuet-samarth-scraper/blob/main/cuetdata - 2024.csv).
 
 ![image](https://github.com/arung2207/cuet-samarth-scraper/assets/3456937/77d7a9a5-525f-4e51-897e-305dcba09c56)
 
