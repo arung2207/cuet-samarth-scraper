@@ -8,16 +8,16 @@ stopwatch.Start();
 const string CuetSamarthUrlRoot = "https://cuetug.ntaonline.in"; //2024
 const string CuetSamarthUniversityUrl = $"{CuetSamarthUrlRoot}/universities";
 
-List<University> Universities = new();
+List<University> Universities = [];
 
-List<UniversityType> UniversityTypes = new()
-{
+List<UniversityType> UniversityTypes =
+[
     new UniversityType{Id="CU", Name="Central University"},
     new UniversityType{Id="STATE", Name="State University"},
     new UniversityType{Id="DEEMED", Name="Deemed University"},
     new UniversityType{Id="PRIVATE", Name="Private University"},
     new UniversityType{Id="GOVT", Name="Government University"}
-};
+];
 
 var homePageDoc = await Helper.GetReponseAsync(CuetSamarthUniversityUrl);
 if (homePageDoc == null)

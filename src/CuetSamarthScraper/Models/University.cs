@@ -4,7 +4,7 @@ public class University
 {
     public University()
     {
-        Programs = new List<UniversityProgram>();
+        Programs = [];
     }
 
     public string? EligibilityUrl { get; set; }
